@@ -1,0 +1,37 @@
+{
+  "name": "rednote-assistent",
+  "version": "1.0.0",
+  "description": "小红书助手 - AI驱动的内容创作工具",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "concurrently \"npm run server\" \"npm run frontend\"",
+    "server": "node server.js",
+    "frontend": "cd frontend && npm run dev",
+    "build": "cd frontend && npm run build",
+    "docker:build": "docker build -t rednote-assistent:v1.0.0 .",
+    "docker:run": "docker run -p 80:80 rednote-assistent:v1.0.0",
+    "docker:push": "docker push rednote-assistent:v1.0.0",
+    "install:all": "npm install && cd frontend && npm install"
+  },
+  "dependencies": {
+    "express": "^4.18.2",
+    "cors": "^2.8.5",
+    "axios": "^1.6.0",
+    "express-rate-limit": "^7.1.5",
+    "node-cache": "^5.1.2",
+    "helmet": "^7.1.0",
+    "compression": "^1.7.4",
+    "morgan": "^1.10.0"
+  },
+  "devDependencies": {
+    "concurrently": "^8.2.2"
+  },
+  "keywords": [
+    "xiaohongshu",
+    "copywriter",
+    "ai",
+    "content-creation"
+  ],
+  "author": "AI Assistant",
+  "license": "MIT"
+}
