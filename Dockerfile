@@ -5,11 +5,14 @@ FROM node:18-alpine AS frontend-builder
 
 WORKDIR /app/frontend
 
+# 安装依赖
+RUN apk add --no-cache python3 make g++
+
 # 复制前端 package.json 和 package-lock.json
 COPY frontend/package*.json ./
 
 # 安装前端依赖
-RUN npm ci
+RUN npm install --legacy-peer-deps
 
 # 复制前端源代码
 COPY frontend/ ./
@@ -36,7 +39,7 @@ COPY --from=frontend-builder /app/frontend/dist /usr/share/nginx/html
 COPY server.js package.json ./
 
 # 安装后端依赖
-RUN npm ci --only=production
+RUN npm install --only=production
 
 # 暴露端口
 EXPOSE 80
